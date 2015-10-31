@@ -1,0 +1,381 @@
+FEATURES: ['poi','email_subject','email_body','to_poi_ratio','combined']	
+GridSearchCV(cv=None, error_score='raise',
+       estimator=LinearSVC(C=1, class_weight='auto', dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0),
+       fit_params={}, iid=True, loss_func=None, n_jobs=5,
+       param_grid=[{'C': [0.001, 1, 0.01, 10]}], pre_dispatch='2*n_jobs',
+       refit=True, score_func=None, scoring='recall', verbose=3)
+	Accuracy: 0.37647	Precision: 0.14862	Recall: 0.77750	F1: 0.24954	F2: 0.42111
+	Total predictions: 15000	True positives: 1555	False positives: 8908	False negatives:  445	True negatives: 4092
+
+
+	LinearSVC(C=10, class_weight='auto', dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+	Accuracy: 0.62493	Precision: 0.19874	Recall: 0.59800	F1: 0.29833	F2: 0.42659
+	Total predictions: 15000	True positives: 1196	False positives: 4822	False negatives:  804	True negatives: 8178
+
+	
+	LinearSVC(C=1000, class_weight='auto', dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+	Accuracy: 0.72953	Precision: 0.20180	Recall: 0.34800	F1: 0.25546	F2: 0.30396
+	Total predictions: 15000	True positives:  696	False positives: 2753	False negatives: 1304	True negatives: 10247
+
+	
+	AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=2,
+            max_features=None, max_leaf_nodes=None, min_samples_leaf=1,
+            min_samples_split=20, min_weight_fraction_leaf=0.0,
+            random_state=None, splitter='best'),
+          learning_rate=1.0, n_estimators=200, random_state=None)
+	Accuracy: 0.85347	Precision: 0.44723	Recall: 0.41950	F1: 0.43292	F2: 0.42477
+	Total predictions: 15000	True positives:  839	False positives: 1037	False negatives: 1161	True negatives: 11963
+	
+	
+	AdaBoostClassifier(algorithm='SAMME.R',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=2,
+            max_features=None, max_leaf_nodes=None, min_samples_leaf=1,
+            min_samples_split=20, min_weight_fraction_leaf=0.0,
+            random_state=None, splitter='best'),
+          learning_rate=1.0, n_estimators=200, random_state=None)
+	Accuracy: 0.85147	Precision: 0.43777	Recall: 0.40100	F1: 0.41858	F2: 0.40785
+	Total predictions: 15000	True positives:  802	False positives: 1030	False negatives: 1198	True negatives: 11970
+	
+	ELIMATING OUTLIERS: .01 on combined
+	AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=2,
+            max_features=None, max_leaf_nodes=None, min_samples_leaf=1,
+            min_samples_split=20, min_weight_fraction_leaf=0.0,
+            random_state=None, splitter='best'),
+          learning_rate=1.0, n_estimators=200, random_state=None)
+	Accuracy: 0.86200	Precision: 0.39330	Recall: 0.44600	F1: 0.41799	F2: 0.43436
+	Total predictions: 9000	True positives:  446	False positives:  688	False negatives:  554	True negatives: 7312
+	
+	
+	FEATURES: 	['poi','email_subject','email_body','to_poi_ratio','combined', 'from_messages','expenses']
+	AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=2,
+            max_features=None, max_leaf_nodes=None, min_samples_leaf=1,
+            min_samples_split=20, min_weight_fraction_leaf=0.0,
+            random_state=None, splitter='best'),
+          learning_rate=1.0, n_estimators=200, random_state=None)
+	Accuracy: 0.86893	Precision: 0.51107	Recall: 0.39250	F1: 0.44400	F2: 0.41160
+	Total predictions: 15000	True positives:  785	False positives:  751	False negatives: 1215	True negatives: 12249
+	
+	
+	FEATURES: 'poi','email_subject','email_body','to_poi_ratio','combined', 'from_messages','expenses'
+	AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=2,
+            max_features=None, max_leaf_nodes=None, min_samples_leaf=1,
+            min_samples_split=20, min_weight_fraction_leaf=0.0,
+            random_state=None, splitter='best'),
+          learning_rate=1.0, n_estimators=200, random_state=None)
+	Accuracy: 0.82062	Precision: 0.40788	Recall: 0.36750	F1: 0.38664	F2: 0.37492
+	Total predictions: 13000	True positives:  735	False positives: 1067	False negatives: 1265	True negatives: 9933
+	
+	FEATURES:  features_list = ['poi','email_subject','email_body','to_poi_ratio','combined', 'from_messages','expenses','from_poi_ratio']
+	Method SelectKBest = 4
+	Pipeline(steps=[('selectkbest', SelectKBest(k=4, score_func=<function f_regression at 0x0000000017BB9668>)), ('adaboostclassifier', AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=2,
+            max_features=None, max_leaf_n...om_state=None, splitter='best'),
+          learning_rate=1.0, n_estimators=200, random_state=None))])
+	Accuracy: 0.84731	Precision: 0.50549	Recall: 0.34500	F1: 0.41010	F2: 0.36839
+	Total predictions: 13000	True positives:  690	False positives:  675	False negatives: 1310	True negatives: 10325
+
+	
+	FEATURES: same as above.. changed to NaN combined
+	Pipeline(steps=[('selectkbest', SelectKBest(k=4, score_func=<function f_regression at 0x0000000017B7A668>)), ('adaboostclassifier', AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=2,
+            max_features=None, max_leaf_n...om_state=None, splitter='best'),
+          learning_rate=1.0, n_estimators=200, random_state=None))])
+	Accuracy: 0.84731	Precision: 0.50549	Recall: 0.34500	F1: 0.41010	F2: 0.36839
+	Total predictions: 13000	True positives:  690	False positives:  675	False negatives: 1310	True negatives: 10325
+	
+	
+	FEATURE: same as above... did not change combined to NaN.. but reduced min_samples to 5
+	Pipeline(steps=[('selectkbest', SelectKBest(k=4, score_func=<function f_regression at 0x0000000017B70668>)), ('adaboostclassifier', AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=2,
+            max_features=None, max_leaf_n...om_state=None, splitter='best'),
+          learning_rate=1.0, n_estimators=200, random_state=None))])
+	Accuracy: 0.84523	Precision: 0.49534	Recall: 0.31900	F1: 0.38808	F2: 0.34345
+	Total predictions: 13000	True positives:  638	False positives:  650	False negatives: 1362	True negatives: 10350
+	
+	FEATURE: Same as above... changed min_samples to 50 and max_depth to 3
+	Pipeline(steps=[('selectkbest', SelectKBest(k=4, score_func=<function f_regression at 0x0000000017BD9668>)), ('adaboostclassifier', AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=3,
+            max_features=None, max_leaf_n...om_state=None, splitter='best'),
+          learning_rate=1.0, n_estimators=200, random_state=None))])
+	Accuracy: 0.84146	Precision: 0.47641	Recall: 0.30800	F1: 0.37413	F2: 0.33143
+	Total predictions: 13000	True positives:  616	False positives:  677	False negatives: 1384	True negatives: 10323
+	
+	
+	FEATURE:  ['poi','email_subject','email_body','to_poi_ratio','combined', 'from_messages','expenses']
+	no outlier treatment done
+	AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=2,
+            max_features=None, max_leaf_nodes=None, min_samples_leaf=1,
+            min_samples_split=20, min_weight_fraction_leaf=0.0,
+            random_state=None, splitter='best'),
+          learning_rate=1.0, n_estimators=200, random_state=None)
+	Accuracy: 0.86887	Precision: 0.51075	Recall: 0.39200	F1: 0.44356	F2: 0.41112
+	Total predictions: 15000	True positives:  784	False positives:  751	False negatives: 1216	True negatives: 12249
+	
+	
+	FEATURE: same as above... set up gradientboosting to do the same as AdaBoost
+	no outlier treatment
+	GradientBoostingClassifier(init=None, learning_rate=1.0, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.86513	Precision: 0.49347	Recall: 0.43450	F1: 0.46211	F2: 0.44514
+	Total predictions: 15000	True positives:  869	False positives:  892	False negatives: 1131	True negatives: 12108
+	
+	
+	FEATURE: same as above
+	changed the learning rate
+	1)GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.86827	Precision: 0.50726	Recall: 0.41900	F1: 0.45893	F2: 0.43411
+	Total predictions: 15000	True positives:  838	False positives:  814	False negatives: 1162	True negatives: 12186
+	2)GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.86880	Precision: 0.51017	Recall: 0.40150	F1: 0.44936	F2: 0.41936
+	Total predictions: 15000	True positives:  803	False positives:  771	False negatives: 1197	True negatives: 12229
+	3)GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.86893	Precision: 0.51081	Recall: 0.40150	F1: 0.44961	F2: 0.41945
+	Total predictions: 15000	True positives:  803	False positives:  769	False negatives: 1197	True negatives: 12231
+	4)GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.86887	Precision: 0.51049	Recall: 0.40150	F1: 0.44948	F2: 0.41941
+	Total predictions: 15000	True positives:  803	False positives:  770	False negatives: 1197	True negatives: 12230
+	
+	The weight of email_subject, is: 0.0808094536164
+The weight of email_body, is: 0.0494032602807
+The weight of to_poi_ratio, is: 0.0498485858515
+The weight of combined, is: 0.181602129296
+The weight of from_messages, is: 0.0299240357343
+The weight of expenses, is: 0.163412535221
+
+",",",",",",",",- MORE VARIABLES ",",",",",",",",",",",",",",-
+GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.87147	Precision: 0.52449	Recall: 0.38550	F1: 0.44438	F2: 0.40707
+	Total predictions: 15000	True positives:  771	False positives:  699	False negatives: 1229	True negatives: 12301
+
+The weight of email_subject, is: 0.069323494581
+The weight of email_body, is: 0.00503245044456
+The weight of to_poi_ratio, is: 0.0217134189531
+The weight of combined, is: 0.0725195293707
+The weight of from_messages, is: 0.0114867893844
+The weight of expenses, is: 0.0463848226247
+The weight of deferral_payments, is: 0.00615401923947
+The weight of deferred_income, is: 0.0236568462806
+The weight of director_fees, is: 0.0
+The weight of loan_advances, is: 0.0
+The weight of long_term_incentive, is: 0.00631815047869
+The weight of other, is: 0.0671871992371
+The weight of restricted_stock, is: 0.0372227805908
+The weight of restricted_stock_deferred, is: 0.00800049881488
+The weight of to_messages, is: 0.0
+
+",",",",",",",
+GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.87393	Precision: 0.53715	Recall: 0.39400	F1: 0.45457	F2: 0.41618
+	Total predictions: 15000	True positives:  788	False positives:  679	False negatives: 1212	True negatives: 12321
+
+The weight of email_subject, is: 0.069323494581
+The weight of email_body, is: 0.00503245044456
+The weight of to_poi_ratio, is: 0.0217134189531
+The weight of combined, is: 0.0725195293707
+The weight of from_messages, is: 0.0114867893844
+The weight of expenses, is: 0.0463848226247
+The weight of deferral_payments, is: 0.00615401923947
+The weight of deferred_income, is: 0.0236568462806
+The weight of long_term_incentive, is: 0.00631815047869
+The weight of other, is: 0.0671871992371
+The weight of restricted_stock, is: 0.0372227805908
+The weight of restricted_stock_deferred, is: 0.00800049881488
+",",",",",",",",",",",",",
+GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.87393	Precision: 0.53715	Recall: 0.39400	F1: 0.45457	F2: 0.41618
+	Total predictions: 15000	True positives:  788	False positives:  679	False negatives: 1212	True negatives: 12321
+
+0.069323494581Is the weight of email_subject
+0.00503245044456Is the weight of email_body
+0.0217134189531Is the weight of to_poi_ratio
+0.0725195293707Is the weight of combined
+0.0114867893844Is the weight of from_messages
+0.0463848226247Is the weight of expenses
+0.00615401923947Is the weight of deferral_payments
+0.0236568462806Is the weight of deferred_income
+0.00631815047869Is the weight of long_term_incentive
+0.0671871992371Is the weight of other
+0.0372227805908Is the weight of restricted_stock
+0.00800049881488Is the weight of restricted_stock_deferred
+",",",",",",",",",",",",",",-
+GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.87667	Precision: 0.55252	Recall: 0.39450	F1: 0.46033	F2: 0.41843
+	Total predictions: 15000	True positives:  789	False positives:  639	False negatives: 1211	True negatives: 12361
+
+0.080756719225Is the weight of email_subject
+0.0299133457512Is the weight of to_poi_ratio
+0.0792581846045Is the weight of combined
+0.0103557294057Is the weight of from_messages
+0.0297552450214Is the weight of expenses
+0.0238225242766Is the weight of deferred_income
+0.0699724976963Is the weight of other
+0.0661657540192Is the weight of restricted_stock
+",",",",",",",
+GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.88000	Precision: 0.56954	Recall: 0.40950	F1: 0.47644	F2: 0.43388
+	Total predictions: 15000	True positives:  819	False positives:  619	False negatives: 1181	True negatives: 12381
+
+0.0529240603581Is the weight of email_subject
+0.0358187714099Is the weight of to_poi_ratio
+0.0765849863423Is the weight of combined
+0.00624736997358Is the weight of from_messages
+0.042161609129Is the weight of expenses
+0.026756670869Is the weight of deferred_income
+0.0664910656721Is the weight of other
+0.0466283480386Is the weight of restricted_stock
+0.0113871182074Is the weight of email_body
+
+",",",",",",",",",",",",",",",- scaled combined ",",",",",
+GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.87407	Precision: 0.53778	Recall: 0.39500	F1: 0.45546	F2: 0.41715
+	Total predictions: 15000	True positives:  790	False positives:  679	False negatives: 1210	True negatives: 12321
+
+0.069323494581Is the weight of email_subject
+0.0217134189531Is the weight of to_poi_ratio
+0.0725195293707Is the weight of combined_scaled
+0.0114867893844Is the weight of from_messages
+0.0463848226247Is the weight of expenses
+0.0236568462806Is the weight of deferred_income
+0.0671871992371Is the weight of other
+0.0372227805908Is the weight of restricted_stock
+0.00631815047869Is the weight of long_term_incentive
+0.00615401923947Is the weight of deferral_payments
+0.00503245044456Is the weight of email_body
+0.00800049881488Is the weight of restricted_stock_deferred
+
+",",",",",",",",",",",",",",",- scaled combined, email_subject, email_body ",",",",",
+GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.87393	Precision: 0.53710	Recall: 0.39450	F1: 0.45489	F2: 0.41662
+	Total predictions: 15000	True positives:  789	False positives:  680	False negatives: 1211	True negatives: 12320
+
+0.069323494581Is the weight of email_subject_scaled
+0.0217134189531Is the weight of to_poi_ratio
+0.0725195293707Is the weight of combined_scaled
+0.0114867893844Is the weight of from_messages
+0.0463848226247Is the weight of expenses
+0.0236568462806Is the weight of deferred_income
+0.0671871992371Is the weight of other
+0.0372227805908Is the weight of restricted_stock
+0.00631815047869Is the weight of long_term_incentive
+0.00615401923947Is the weight of deferral_payments
+0.00503245044456Is the weight of email_body_scaled
+0.00800049881488Is the weight of restricted_stock_deferred
+ 
+",",",",",",",",",",",",",",",",- scaled expenses ",",",",",",",",",",",",",",",",",",",",
+GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.87393	Precision: 0.53715	Recall: 0.39400	F1: 0.45457	F2: 0.41618
+	Total predictions: 15000	True positives:  788	False positives:  679	False negatives: 1212	True negatives: 12321
+
+0.069323494581Is the weight of email_subject
+0.0217134189531Is the weight of to_poi_ratio
+0.0725195293707Is the weight of combined
+0.0114867893844Is the weight of from_messages
+0.0463848226247Is the weight of expenses_scaled
+0.0236568462806Is the weight of deferred_income
+0.0671871992371Is the weight of other
+0.0372227805908Is the weight of restricted_stock
+0.00631815047869Is the weight of long_term_incentive
+0.00615401923947Is the weight of deferral_payments
+0.00503245044456Is the weight of email_body
+0.00800049881488Is the weight of restricted_stock_deferred
+
+",",",",",",",",",",",",",",",", no scaling ",",",",",",",",",",",",",",",",",",",",",",
+GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.87413	Precision: 0.53815	Recall: 0.39500	F1: 0.45559	F2: 0.41719
+	Total predictions: 15000	True positives:  790	False positives:  678	False negatives: 1210	True negatives: 12322
+
+0.069323494581Is the weight of email_subject
+0.0217134189531Is the weight of to_poi_ratio
+0.0725195293707Is the weight of combined
+0.0114867893844Is the weight of from_messages
+0.0463848226247Is the weight of expenses
+0.0236568462806Is the weight of deferred_income
+0.0671871992371Is the weight of other
+0.0372227805908Is the weight of restricted_stock
+0.00631815047869Is the weight of long_term_incentive
+0.00615401923947Is the weight of deferral_payments
+0.00503245044456Is the weight of email_body
+0.00800049881488Is the weight of restricted_stock_deferred
