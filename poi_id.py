@@ -7,9 +7,8 @@ from sklearn.pipeline import make_pipeline
 from sklearn.feature_selection import SelectKBest, f_regression
 #sys.path.append("../tools/")
 
-from tools.feature_format import featureFormat, targetFeatureSplit
 from tester import test_classifier, dump_classifier_and_data
-from final_project import text_results_to_dataset, get_sent_by_date
+import text_results_to_dataset, get_sent_by_date
 
 def scale_features(data, features_to_scale, all_features):
     ret_names = {}
