@@ -19,6 +19,12 @@ Python script to iterate through emails and get the data ready for the text lear
 
 The second part of this script focuses on the text learning portion of the full model.  It creates the vectorizer and classifier and then runs it and pulls out the decision_fuction and stores that in author_dict.pkl
 
+### poi_email_addresses.py
+Hard coded list of all valid poi email addresses
+
+### final_project_dataset.pkl
+The initial dataset provided by the course and udacity
+
 ### my_classifier.pkl
 The final classifier for project.  GradientBoostingClassifier
 
@@ -39,3 +45,6 @@ Stores the text_learning results to the final dataset
 
 ### websites_used.txt
 The list of websites used during model creation and final write up.
+
+### tools folder
+The provided udacity tools scripts to auto run, assess and store your model
