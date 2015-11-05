@@ -3,12 +3,13 @@
 import sys
 import pickle
 from sklearn import cross_validation
-from sklearn.pipeline import make_pipeline
+from sklearn.pipeline import make_pipeline, Pipeline
 from sklearn.feature_selection import SelectKBest, f_regression
 #sys.path.append("../tools/")
 
 from tester import test_classifier, dump_classifier_and_data
-import text_results_to_dataset, get_sent_by_date
+from final_project import text_results_to_dataset, get_sent_by_date
+from sklearn.preprocessing.data import MinMaxScaler
 
 def scale_features(data, features_to_scale, all_features):
     ret_names = {}
@@ -77,8 +78,8 @@ def run_main():
     ### features_list is a list of strings, each of which is a feature name.
     ### The first feature must be "poi".
     features_list = ['poi','email_subject','to_poi_ratio','combined', 'from_messages','expenses',
-                     'deferred_income','other','restricted_stock'
-                     ,'long_term_incentive','deferral_payments','email_body','restricted_stock_deferred'] # You will need to use more features
+                     'deferred_income','other','restricted_stock', 'email_body']
+                     #,'long_term_incentive','deferral_payments','email_body','restricted_stock_deferred'] # You will need to use more features
     
     ''' FEATURE LIST 
     bonus, deferral_payments, deferred_income, director_fees, email_address,
@@ -115,7 +116,7 @@ def run_main():
         data_dict[key]['combined'] = combined
     # create percent email from poi
     ### Store to my_dataset for easy export below.
-    features_list = scale_features(data_dict, features_list[1:], features_list)
+    features_list = scale_features(data_dict, [], features_list)
     my_dataset = data_dict
     
     #outlier_treatment(my_dataset, 'combined', elim_top=.01)
@@ -138,7 +139,8 @@ def run_main():
     params = {'n_estimators': 200, 'max_depth': 2,'min_samples_split':20,
               'learning_rate': .5, 'min_samples_leaf': 1}
     clf = ensemble.GradientBoostingClassifier(**params)
-    
+    scaler = MinMaxScaler()
+    scaler_clf =  Pipeline([('scaler',scaler),('clf',clf)])
     #from sklearn.ensemble import AdaBoostClassifier
     #from sklearn.tree import DecisionTreeClassifier
     #clf = AdaBoostClassifier(DecisionTreeClassifier(max_depth=2,min_samples_split=20),algorithm="SAMME",n_estimators=200)
@@ -171,7 +173,7 @@ def run_main():
     ### shuffle split cross validation. For more info: 
     ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
     
-    test_classifier(clf, my_dataset, features_list)
+    test_classifier(scaler_clf, my_dataset, features_list)
     weights = clf.feature_importances_
     for w, f in zip(weights,features_list[1:]):
         print str(w) + ' is the weight of '+f

@@ -379,3 +379,43 @@ GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
 0.00615401923947Is the weight of deferral_payments
 0.00503245044456Is the weight of email_body
 0.00800049881488Is the weight of restricted_stock_deferred
+
+
+--------------------------------------------------------------------
+GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
+	Accuracy: 0.88040	Precision: 0.57153	Recall: 0.41150	F1: 0.47849	F2: 0.43591
+	Total predictions: 15000	True positives:  823	False positives:  617	False negatives: 1177	True negatives: 12383
+
+0.0529240603581 is the weight of email_subject
+0.0358187714099 is the weight of to_poi_ratio
+0.0765849863423 is the weight of combined
+0.00624736997358 is the weight of from_messages
+0.042161609129 is the weight of expenses
+0.026756670869 is the weight of deferred_income
+0.0664910656721 is the weight of other
+0.0466283480386 is the weight of restricted_stock
+0.0113871182074 is the weight of email_body
+---------------------------------------------------------------------
+Pipeline(steps=[('scaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('clf', GradientBoostingClassifier(init=None, learning_rate=0.5, loss='deviance',
+              max_depth=2, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=20,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              random_state=None, subsample=1.0, verbose=0,
+              warm_start=False))])
+	Accuracy: 0.88033	Precision: 0.57123	Recall: 0.41100	F1: 0.47805	F2: 0.43543
+	Total predictions: 15000	True positives:  822	False positives:  617	False negatives: 1178	True negatives: 12383
+
+0.0529240603581 is the weight of email_subject
+0.0358187714099 is the weight of to_poi_ratio
+0.0765849863423 is the weight of combined
+0.00624736997358 is the weight of from_messages
+0.042161609129 is the weight of expenses
+0.026756670869 is the weight of deferred_income
+0.0664910656721 is the weight of other
+0.0466283480386 is the weight of restricted_stock
+0.0113871182074 is the weight of email_body

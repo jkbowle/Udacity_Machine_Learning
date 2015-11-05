@@ -11,6 +11,7 @@ import os
 import csv
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import MinMaxScaler
 from tools.feature_format import textFormat
 from sklearn import tree
 from sklearn.svm import LinearSVC
@@ -21,6 +22,7 @@ import operator
 from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
 import gc
+from sklearn.pipeline import Pipeline
 
 
 def get_text_from_emails(emails, email_key, poi_emails, data_dict,from_pkl=False, combined=False):
@@ -177,7 +179,7 @@ def vectorize_text(author_dict, feature, scrub_list, test_size = 0.1, all_togeth
     print 'now vectorizing'
     
     vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5,stop_words='english')
-    features_train = vectorizer.fit_transform(features_train)
+    features_train = vectorizer.fit_transform(features_train).toarray()
     features_test  = vectorizer.transform(features_test).toarray()
     
     names = vectorizer.get_feature_names()
@@ -188,6 +190,9 @@ def vectorize_text(author_dict, feature, scrub_list, test_size = 0.1, all_togeth
     
     #clf = tree.DecisionTreeClassifier(min_samples_split=4,min_samples_leaf=4)
     clf = LinearSVC(C=.001,penalty="l2",dual=use_dual,class_weight='auto',loss="squared_hinge")
+    #scaler = MinMaxScaler()
+    
+    #clf = Pipeline([('scaler',scaler),('clf',clf2)])
     print 'about to train the model: trying to identify: '+str(sum(labels_train))
     print '    number of features using for this model: '+str(len(names))
     clf.fit(features_train,labels_train)
